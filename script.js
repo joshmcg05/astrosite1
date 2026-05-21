@@ -1,50 +1,74 @@
 const slider = document.querySelector('.slider');
 
-const scrollAmount = 344;
+const images = document.querySelectorAll('.slider img');
 
-/* NEXT BUTTON */
+const nextBtn = document.querySelector('.next');
+const prevBtn = document.querySelector('.prev');
 
-document.querySelector('.next').addEventListener('click', () => {
+let currentIndex = 0;
 
-  if (
-    slider.scrollLeft + slider.clientWidth >=
-    slider.scrollWidth - 10
-  ) {
+const imageWidth = 308;
+
+/* SET ACTIVE IMAGE */
+
+function updateActiveImage() {
+
+  images.forEach(img => img.classList.remove('active'));
+
+  images[currentIndex].classList.add('active');
+
+}
+
+/* MOVE SLIDER */
+
+function moveSlider() {
+
+  slider.scrollTo({
+    left: currentIndex * imageWidth,
+    behavior: 'smooth'
+  });
+
+  updateActiveImage();
+
+}
+
+/* NEXT */
+
+nextBtn.addEventListener('click', () => {
+
+  currentIndex++;
+
+  if (currentIndex >= images.length - 6) {
+
+    currentIndex = 0;
 
     slider.scrollTo({
       left: 0,
-      behavior: 'smooth'
-    });
-
-  } else {
-
-    slider.scrollBy({
-      left: scrollAmount,
-      behavior: 'smooth'
+      behavior: 'auto'
     });
 
   }
 
+  moveSlider();
+
 });
 
-/* PREVIOUS BUTTON */
+/* PREV */
 
-document.querySelector('.prev').addEventListener('click', () => {
+prevBtn.addEventListener('click', () => {
 
-  if (slider.scrollLeft <= 0) {
+  currentIndex--;
 
-    slider.scrollTo({
-      left: slider.scrollWidth,
-      behavior: 'smooth'
-    });
+  if (currentIndex < 0) {
 
-  } else {
-
-    slider.scrollBy({
-      left: -scrollAmount,
-      behavior: 'smooth'
-    });
+    currentIndex = 5;
 
   }
 
+  moveSlider();
+
 });
+
+/* INITIAL */
+
+updateActiveImage();
