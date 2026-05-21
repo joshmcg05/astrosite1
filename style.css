@@ -118,107 +118,126 @@ button:hover {
 
 .slider-section {
   background: #0b0f17;
-  padding: 100px 0;
+  padding: 120px 0;
   overflow: hidden;
 }
 
 .slider-section h2 {
   text-align: center;
-  margin-bottom: 50px;
-  font-size: 36px;
+  margin-bottom: 60px;
+
+  font-size: 38px;
+
   font-family: 'Playfair Display', serif;
   font-weight: 400;
 }
 
-.slider-wrapper {
+.carousel {
   position: relative;
 }
 
 .slider {
   display: flex;
-  gap: 24px;
-  overflow-x: auto;
+  align-items: center;
+
+  gap: 28px;
+
+  overflow-x: scroll;
+
   scroll-behavior: smooth;
-  padding: 0 80px;
+
+  padding: 40px 20vw;
 
   scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
 }
 
 .slider::-webkit-scrollbar {
   display: none;
 }
 
-/* PORTRAIT IMAGES */
+/* IMAGES */
 
 .slider img {
-  width: 320px;
+
+  width: 280px;
+
   aspect-ratio: 4 / 5;
 
   object-fit: cover;
 
-  border-radius: 18px;
+  border-radius: 20px;
 
   flex-shrink: 0;
 
-  transition: transform 0.3s ease;
+  opacity: 0.45;
+
+  transform: scale(0.88);
+
+  transition:
+    transform 0.45s ease,
+    opacity 0.45s ease;
+
 }
 
-.slider img:hover {
-  transform: scale(1.02);
+/* CENTER IMAGE */
+
+.slider img.active {
+
+  opacity: 1;
+
+  transform: scale(1.08);
+
 }
 
 /* ARROWS */
 
 .slider-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
 
-  width: 54px;
-  height: 54px;
+  position: absolute;
+
+  top: 50%;
+
+  transform: translateY(-50%);
 
   border: none;
 
-  background: rgba(255,255,255,0.08);
+  background: transparent;
 
   color: white;
 
-  font-size: 28px;
+  font-size: 54px;
 
   cursor: pointer;
 
-  z-index: 20;
+  z-index: 30;
 
-  backdrop-filter: blur(10px);
-
-  border-radius: 50%;
+  opacity: 0.7;
 
   transition: 0.3s;
 }
 
 .slider-btn:hover {
-  background: rgba(255,255,255,0.18);
+  opacity: 1;
 }
 
 .prev {
-  left: 15px;
+  left: 30px;
 }
 
 .next {
-  right: 15px;
+  right: 30px;
 }
 
 /* MOBILE */
 
 @media (max-width: 768px) {
 
-  .slider img {
-    width: 260px;
+  .slider {
+    padding: 40px 10vw;
   }
 
-  .slider {
-    padding: 0 20px;
+  .slider img {
+    width: 220px;
   }
 
 }
