@@ -118,41 +118,54 @@ button:hover {
 
 .slider-section {
   background: #0b0f17;
-  padding: 80px 0;
+  padding: 100px 0;
+  overflow: hidden;
 }
 
 .slider-section h2 {
   text-align: center;
-  margin-bottom: 40px;
-  font-size: 32px;
+  margin-bottom: 50px;
+  font-size: 36px;
   font-family: 'Playfair Display', serif;
   font-weight: 400;
 }
 
-.slider-container {
+.slider-wrapper {
   position: relative;
 }
 
 .slider {
   display: flex;
+  gap: 24px;
   overflow-x: auto;
   scroll-behavior: smooth;
-  gap: 20px;
-  padding: 0 60px;
+  padding: 0 80px;
 
   scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 .slider::-webkit-scrollbar {
   display: none;
 }
 
+/* PORTRAIT IMAGES */
+
 .slider img {
-  width: 500px;
-  height: 320px;
+  width: 320px;
+  aspect-ratio: 4 / 5;
+
   object-fit: cover;
-  border-radius: 12px;
+
+  border-radius: 18px;
+
   flex-shrink: 0;
+
+  transition: transform 0.3s ease;
+}
+
+.slider img:hover {
+  transform: scale(1.02);
 }
 
 /* ARROWS */
@@ -161,23 +174,53 @@ button:hover {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255,255,255,0.1);
+
+  width: 54px;
+  height: 54px;
+
   border: none;
+
+  background: rgba(255,255,255,0.08);
+
   color: white;
-  font-size: 32px;
-  width: 50px;
-  height: 50px;
+
+  font-size: 28px;
+
   cursor: pointer;
+
+  z-index: 20;
+
   backdrop-filter: blur(10px);
-  z-index: 10;
+
+  border-radius: 50%;
+
+  transition: 0.3s;
+}
+
+.slider-btn:hover {
+  background: rgba(255,255,255,0.18);
 }
 
 .prev {
-  left: 10px;
+  left: 15px;
 }
 
 .next {
-  right: 10px;
+  right: 15px;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+  .slider img {
+    width: 260px;
+  }
+
+  .slider {
+    padding: 0 20px;
+  }
+
 }
 
 /* FOOTER */
