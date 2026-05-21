@@ -113,3 +113,95 @@ button:hover {
   opacity: 0.7;
   line-height: 1.6;
 }
+
+/* SLIDER SECTION */
+
+.slider-section {
+  background: #0b0f17;
+  padding: 80px 0;
+}
+
+.slider-section h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 32px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+}
+
+.slider-container {
+  position: relative;
+}
+
+.slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 20px;
+  padding: 0 60px;
+
+  scrollbar-width: none;
+}
+
+.slider::-webkit-scrollbar {
+  display: none;
+}
+
+.slider img {
+  width: 500px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+/* ARROWS */
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: white;
+  font-size: 32px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+/* FOOTER */
+
+footer {
+  background: #06090f;
+  padding: 40px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer p {
+  opacity: 0.6;
+}
+
+.socials a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+.socials a:hover {
+  opacity: 1;
+}
