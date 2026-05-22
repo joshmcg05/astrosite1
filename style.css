@@ -214,6 +214,130 @@ button:hover {
 
 }
 
+/* LIGHTBOX */
+
+.lightbox {
+
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0,0,0,0.92);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition: opacity 0.4s ease;
+
+  z-index: 999;
+
+}
+
+/* ACTIVE */
+
+.lightbox.active {
+
+  opacity: 1;
+
+  pointer-events: auto;
+
+}
+
+/* IMAGE */
+
+.lightbox-image {
+
+  max-width: 82vw;
+
+  max-height: 82vh;
+
+  border-radius: 18px;
+
+  object-fit: contain;
+
+  transform: scale(0.92);
+
+  transition: transform 0.4s ease;
+
+}
+
+.lightbox.active .lightbox-image {
+
+  transform: scale(1);
+
+}
+
+/* CLOSE */
+
+.close {
+
+  position: absolute;
+
+  top: 30px;
+
+  right: 40px;
+
+  color: white;
+
+  font-size: 48px;
+
+  cursor: pointer;
+
+  opacity: 0.7;
+
+  transition: 0.3s;
+
+}
+
+.close:hover {
+  opacity: 1;
+}
+
+/* ARROWS */
+
+.lightbox-arrow {
+
+  position: absolute;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: white;
+
+  font-size: 64px;
+
+  cursor: pointer;
+
+  opacity: 0.5;
+
+  transition: 0.3s;
+
+  user-select: none;
+
+}
+
+.lightbox-arrow:hover {
+
+  opacity: 1;
+
+}
+
+.left {
+  left: 40px;
+}
+
+.right {
+  right: 40px;
+}
+
 /* FOOTER */
 
 footer {
