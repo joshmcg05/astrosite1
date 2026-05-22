@@ -222,19 +222,25 @@ button:hover {
 
   inset: 0;
 
-  background: rgba(0,0,0,0.92);
-
   display: flex;
 
   align-items: center;
 
   justify-content: center;
 
+  background: rgba(0,0,0,0.55);
+
+  backdrop-filter: blur(18px);
+
+  -webkit-backdrop-filter: blur(18px);
+
   opacity: 0;
 
   pointer-events: none;
 
-  transition: opacity 0.4s ease;
+  transition:
+    opacity 0.45s ease,
+    backdrop-filter 0.45s ease;
 
   z-index: 999;
 
@@ -258,46 +264,67 @@ button:hover {
 
   max-height: 82vh;
 
-  border-radius: 18px;
+  border-radius: 20px;
 
   object-fit: contain;
 
-  transform: scale(0.92);
+  transform:
+    scale(0.7)
+    translateY(30px);
 
-  transition: transform 0.4s ease;
+  opacity: 0;
+
+  transition:
+    transform 0.45s cubic-bezier(.2,.8,.2,1),
+    opacity 0.45s ease;
+
+  box-shadow:
+    0 40px 100px rgba(0,0,0,0.45);
 
 }
+
+/* OPEN STATE */
 
 .lightbox.active .lightbox-image {
 
-  transform: scale(1);
+  transform:
+    scale(1)
+    translateY(0);
+
+  opacity: 1;
 
 }
 
-/* CLOSE */
+/* CLOSE BUTTON */
 
 .close {
 
   position: absolute;
 
-  top: 30px;
+  top: 28px;
 
   right: 40px;
 
   color: white;
 
-  font-size: 48px;
+  font-size: 54px;
+
+  font-weight: 300;
 
   cursor: pointer;
 
-  opacity: 0.7;
+  opacity: 0.55;
 
-  transition: 0.3s;
+  transition: opacity 0.3s ease;
+
+  z-index: 1001;
 
 }
 
 .close:hover {
+
   opacity: 1;
+
 }
 
 /* ARROWS */
@@ -312,15 +339,21 @@ button:hover {
 
   color: white;
 
-  font-size: 64px;
+  font-size: 72px;
+
+  font-weight: 200;
 
   cursor: pointer;
 
-  opacity: 0.5;
+  opacity: 0.35;
 
-  transition: 0.3s;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 
   user-select: none;
+
+  z-index: 1001;
 
 }
 
@@ -328,14 +361,20 @@ button:hover {
 
   opacity: 1;
 
+  transform: translateY(-50%) scale(1.08);
+
 }
 
 .left {
+
   left: 40px;
+
 }
 
 .right {
+
   right: 40px;
+
 }
 
 /* FOOTER */
