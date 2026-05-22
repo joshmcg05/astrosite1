@@ -9,19 +9,25 @@ const images = [
 
 let currentImage = 0;
 
+/* OPEN LIGHTBOX */
+
 function openLightbox(index) {
 
   currentImage = index;
 
-  document
-    .getElementById("lightbox")
-    .classList.add("active");
+  const lightbox =
+    document.getElementById("lightbox");
 
-  document
-    .getElementById("lightbox-image")
-    .src = images[currentImage];
+  const lightboxImage =
+    document.getElementById("lightbox-image");
+
+  lightbox.classList.add("active");
+
+  lightboxImage.src = images[currentImage];
 
 }
+
+/* CLOSE LIGHTBOX */
 
 function closeLightbox() {
 
@@ -31,36 +37,48 @@ function closeLightbox() {
 
 }
 
+/* CHANGE IMAGE */
+
 function changeSlide(direction) {
 
-const lightboxImage =
-  document.getElementById("lightbox-image");
+  const lightboxImage =
+    document.getElementById("lightbox-image");
 
-lightboxImage.style.opacity = 0;
+  /* ANIMATE OUT */
 
-lightboxImage.style.transform =
-  "scale(0.92)";
-
-setTimeout(() => {
-
-  currentImage += direction;
-
-  if (currentImage < 0) {
-    currentImage = images.length - 1;
-  }
-
-  if (currentImage >= images.length) {
-    currentImage = 0;
-  }
-
-  lightboxImage.src = images[currentImage];
-
-  lightboxImage.style.opacity = 1;
+  lightboxImage.style.opacity = 0;
 
   lightboxImage.style.transform =
-    "scale(1)";
+    "scale(0.92) translateY(10px)";
 
-}, 180);
+  setTimeout(() => {
+
+    currentImage += direction;
+
+    /* LOOP */
+
+    if (currentImage < 0) {
+      currentImage = images.length - 1;
+    }
+
+    if (currentImage >= images.length) {
+      currentImage = 0;
+    }
+
+    /* CHANGE IMAGE */
+
+    lightboxImage.src = images[currentImage];
+
+    /* ANIMATE IN */
+
+    lightboxImage.style.opacity = 1;
+
+    lightboxImage.style.transform =
+      "scale(1) translateY(0)";
+
+  }, 180);
+
+}
 
 /* CLOSE WHEN CLICKING BACKGROUND */
 
@@ -69,7 +87,9 @@ document
   .addEventListener("click", function(e) {
 
     if (e.target.id === "lightbox") {
+
       closeLightbox();
+
     }
 
 });
