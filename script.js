@@ -33,6 +33,16 @@ function closeLightbox() {
 
 function changeSlide(direction) {
 
+const lightboxImage =
+  document.getElementById("lightbox-image");
+
+lightboxImage.style.opacity = 0;
+
+lightboxImage.style.transform =
+  "scale(0.92)";
+
+setTimeout(() => {
+
   currentImage += direction;
 
   if (currentImage < 0) {
@@ -43,11 +53,14 @@ function changeSlide(direction) {
     currentImage = 0;
   }
 
-  document
-    .getElementById("lightbox-image")
-    .src = images[currentImage];
+  lightboxImage.src = images[currentImage];
 
-}
+  lightboxImage.style.opacity = 1;
+
+  lightboxImage.style.transform =
+    "scale(1)";
+
+}, 180);
 
 /* CLOSE WHEN CLICKING BACKGROUND */
 
