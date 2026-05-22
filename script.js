@@ -93,3 +93,86 @@ document
     }
 
 });
+
+/* =========================
+   SLIDER MANUAL CONTROLS
+========================= */
+
+const sliderTrack =
+  document.getElementById("slider-track");
+
+const prevArrow =
+  document.querySelector(".slider-prev");
+
+const nextArrow =
+  document.querySelector(".slider-next");
+
+let autoScrollPaused = false;
+
+let pauseTimeout;
+
+/* STOP CSS ANIMATION */
+
+function pauseAutoScroll() {
+
+  sliderTrack.style.animationPlayState =
+    "paused";
+
+}
+
+/* RESUME */
+
+function resumeAutoScroll() {
+
+  sliderTrack.style.animationPlayState =
+    "running";
+
+}
+
+/* MANUAL MOVE */
+
+function manualSlide(direction) {
+
+  pauseAutoScroll();
+
+  clearTimeout(pauseTimeout);
+
+  const currentTransform =
+    getComputedStyle(sliderTrack).transform;
+
+  let matrix =
+    new DOMMatrix(currentTransform);
+
+  let currentX = matrix.m41;
+
+  currentX += direction * 360;
+
+  sliderTrack.style.animation = "none";
+
+  sliderTrack.style.transform =
+    `translateX(${currentX}px)`;
+
+  /* RESUME AFTER 5s */
+
+  pauseTimeout = setTimeout(() => {
+
+    sliderTrack.style.animation =
+      "autoScroll 45s linear infinite";
+
+  }, 5000);
+
+}
+
+/* BUTTONS */
+
+nextArrow.addEventListener("click", () => {
+
+  manualSlide(-1);
+
+});
+
+prevArrow.addEventListener("click", () => {
+
+  manualSlide(1);
+
+});
