@@ -1,74 +1,62 @@
-const slider = document.querySelector('.slider');
+const images = [
+  "image1.jpg",
+  "image2.jpg",
+  "image3.jpg",
+  "image4.jpg",
+  "image5.jpg",
+  "image6.jpg"
+];
 
-const images = document.querySelectorAll('.slider img');
+let currentImage = 0;
 
-const nextBtn = document.querySelector('.next');
-const prevBtn = document.querySelector('.prev');
+function openLightbox(index) {
 
-let currentIndex = 0;
+  currentImage = index;
 
-const imageWidth = 308;
+  document
+    .getElementById("lightbox")
+    .classList.add("active");
 
-/* SET ACTIVE IMAGE */
-
-function updateActiveImage() {
-
-  images.forEach(img => img.classList.remove('active'));
-
-  images[currentIndex].classList.add('active');
-
-}
-
-/* MOVE SLIDER */
-
-function moveSlider() {
-
-  slider.scrollTo({
-    left: currentIndex * imageWidth,
-    behavior: 'smooth'
-  });
-
-  updateActiveImage();
+  document
+    .getElementById("lightbox-image")
+    .src = images[currentImage];
 
 }
 
-/* NEXT */
+function closeLightbox() {
 
-nextBtn.addEventListener('click', () => {
+  document
+    .getElementById("lightbox")
+    .classList.remove("active");
 
-  currentIndex++;
+}
 
-  if (currentIndex >= images.length - 6) {
+function changeSlide(direction) {
 
-    currentIndex = 0;
+  currentImage += direction;
 
-    slider.scrollTo({
-      left: 0,
-      behavior: 'auto'
-    });
-
+  if (currentImage < 0) {
+    currentImage = images.length - 1;
   }
 
-  moveSlider();
-
-});
-
-/* PREV */
-
-prevBtn.addEventListener('click', () => {
-
-  currentIndex--;
-
-  if (currentIndex < 0) {
-
-    currentIndex = 5;
-
+  if (currentImage >= images.length) {
+    currentImage = 0;
   }
 
-  moveSlider();
+  document
+    .getElementById("lightbox-image")
+    .src = images[currentImage];
+
+}
+
+/* CLOSE WHEN CLICKING BACKGROUND */
+
+document
+  .getElementById("lightbox")
+  .addEventListener("click", function(e) {
+
+    if (e.target.id === "lightbox") {
+      closeLightbox();
+    }
 
 });
-
-/* INITIAL */
-
-updateActiveImage();
