@@ -37,6 +37,185 @@ function closeLightbox() {
 
 }
 
+/* ==========================
+   CAROUSEL
+========================== */
+
+const track =
+    document.getElementById("slider-track");
+
+const prev =
+    document.querySelector(".slider-prev");
+
+const next =
+    document.querySelector(".slider-next");
+
+let currentX = 0;
+
+let speed = 0.35;
+
+let pauseUntil = 0;
+
+/* image width + gap */
+
+const step = 348;
+
+/* animate */
+
+function animateCarousel() {
+
+    const now = Date.now();
+
+    if (now > pauseUntil) {
+
+        currentX -= speed;
+
+    }
+
+    const halfWidth =
+        track.scrollWidth / 2;
+
+    if (Math.abs(currentX) >= halfWidth) {
+
+        currentX += halfWidth;
+
+    }
+
+    track.style.transform =
+        `translateX(${currentX}px)`;
+
+    updateFocus();
+
+    requestAnimationFrame(
+        animateCarousel
+    );
+
+}
+
+animateCarousel();
+
+/* focus image */
+
+function updateFocus() {
+
+    const images =
+        track.querySelectorAll("img");
+
+    const center =
+        window.innerWidth / 2;
+
+    let closest = null;
+
+    let smallestDistance = Infinity;
+
+    images.forEach(img => {
+
+        const rect =
+            img.getBoundingClientRect();
+
+        const imageCenter =
+            rect.left + rect.width / 2;
+
+        const distance =
+            Math.abs(
+                center - imageCenter
+            );
+
+        img.classList.remove(
+            "focused"
+        );
+
+        if (
+            distance <
+            smallestDistance
+        ) {
+
+            smallestDistance =
+                distance;
+
+            closest = img;
+
+        }
+
+    });
+
+    if (closest) {
+
+        closest.classList.add(
+            "focused"
+        );
+
+    }
+
+}
+
+/* smooth move */
+
+function moveCarousel(direction) {
+
+    pauseUntil =
+        Date.now() + 5000;
+
+    const start =
+        currentX;
+
+    const end =
+        currentX +
+        direction * step;
+
+    const duration =
+        700;
+
+    const startTime =
+        performance.now();
+
+    function animate(time) {
+
+        const progress =
+            Math.min(
+                (time - startTime)
+                / duration,
+                1
+            );
+
+        const eased =
+            1 -
+            Math.pow(
+                1 - progress,
+                3
+            );
+
+        currentX =
+            start +
+            (end - start)
+            * eased;
+
+        if (progress < 1) {
+
+            requestAnimationFrame(
+                animate
+            );
+
+        }
+
+    }
+
+    requestAnimationFrame(
+        animate
+    );
+
+}
+
+next.addEventListener(
+    "click",
+    () => moveCarousel(-1)
+);
+
+prev.addEventListener(
+    "click",
+    () => moveCarousel(1)
+);
+
 /* CHANGE IMAGE */
 
 function changeSlide(direction) {
