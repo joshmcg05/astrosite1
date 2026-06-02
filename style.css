@@ -118,179 +118,137 @@ button:hover {
 
 .slider-section {
 
-  background: #0b0f17;
-
-  padding: 120px 0;
-
-  overflow: hidden;
+    background: #0b0f17;
+    padding: 120px 0;
+    overflow: hidden;
 
 }
 
 .slider-section h2 {
 
-  text-align: center;
+    text-align: center;
+    margin-bottom: 60px;
 
-  margin-bottom: 60px;
+    font-size: 38px;
 
-  font-size: 38px;
-
-  font-family: 'Playfair Display', serif;
-
-  font-weight: 400;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
 
 }
-
-/* CONTAINER */
 
 .slider-container {
 
-  position: relative;
+    position: relative;
 
 }
 
-/* TRACK */
+.carousel-window {
+
+    overflow: hidden;
+
+}
 
 .slider-track {
 
-  display: flex;
+    display: flex;
+    gap: 28px;
 
-  gap: 28px;
+    width: max-content;
 
-  width: max-content;
-
-  animation: autoScroll 45s linear infinite;
-
-}
-
-/* PAUSE ON HOVER */
-
-.slider-container:hover .slider-track {
-
-  animation-play-state: paused;
+    will-change: transform;
 
 }
-
-/* IMAGES */
 
 .slider-track img {
 
-  width: 320px;
+    width: 320px;
 
-  aspect-ratio: 4 / 5;
+    aspect-ratio: 4 / 5;
 
-  object-fit: cover;
+    object-fit: cover;
 
-  border-radius: 20px;
+    border-radius: 20px;
 
-  flex-shrink: 0;
+    flex-shrink: 0;
 
-  opacity: 0.65;
+    opacity: 0.45;
 
-  transform: scale(0.92);
+    transform: scale(0.88);
 
-  transition:
-    transform 0.45s ease,
-    opacity 0.45s ease;
+    transition:
+        transform 0.35s ease,
+        opacity 0.35s ease;
 
-  cursor: pointer;
-
-}
-
-/* HOVER / ACTIVE FEEL */
-
-.slider-track img:hover {
-
-  opacity: 1;
-
-  transform: scale(1);
+    cursor: pointer;
 
 }
 
-/* ARROWS */
+/* active image */
+
+.slider-track img.focused {
+
+    opacity: 1;
+
+    transform: scale(1.08);
+
+}
 
 .slider-arrow {
 
-  position: absolute;
+    position: absolute;
 
-  top: 50%;
+    top: 50%;
+    transform: translateY(-50%);
 
-  transform: translateY(-50%);
+    border: none;
+    background: transparent;
 
-  border: none;
+    color: white;
 
-  background: transparent;
+    font-size: 64px;
+    font-weight: 200;
 
-  color: white;
+    cursor: pointer;
 
-  font-size: 64px;
+    opacity: 0;
 
-  font-weight: 200;
+    transition: opacity 0.3s ease;
 
-  cursor: pointer;
-
-  z-index: 20;
-
-  opacity: 0;
-
-  transition: opacity 0.4s ease;
+    z-index: 50;
 
 }
 
-/* FADE IN ON HOVER */
-
 .slider-container:hover .slider-arrow {
 
-  opacity: 0.45;
+    opacity: 0.4;
 
 }
 
 .slider-arrow:hover {
 
-  opacity: 1 !important;
+    opacity: 1 !important;
 
 }
 
-/* POSITIONS */
-
 .slider-prev {
 
-  left: 30px;
+    left: 30px;
 
 }
 
 .slider-next {
 
-  right: 30px;
+    right: 30px;
 
 }
 
-/* AUTO SCROLL */
+@media (max-width:768px) {
 
-@keyframes autoScroll {
+    .slider-track img {
 
-  from {
+        width: 240px;
 
-    transform: translateX(0);
-
-  }
-
-  to {
-
-    transform: translateX(calc(-50% - 14px));
-
-  }
-
-}
-
-/* MOBILE */
-
-@media (max-width: 768px) {
-
-  .slider-track img {
-
-    width: 240px;
-
-  }
+    }
 
 }
 
